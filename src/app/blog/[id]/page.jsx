@@ -1,49 +1,60 @@
 import React from 'react'
-import styles from "./page.module.css"
-import Image from "next/image";
+import styles from './page.module.css'
+import Image from 'next/image'
+import { notFound } from 'next/navigation'
 
-const BlogPost = () => {
+async function getData(id) {
+  const res = await fetch(`http://localhost:3000/api/posts/${id}`, {
+    cache: 'no-store',
+  })
+
+  if (!res.ok) {
+    return notFound()
+  }
+
+  return res.json()
+}
+
+// 동적 데이터에 사용하는 SEO
+export async function generateMetadata({ params }) {
+  const post = await getData(params.id)
+
+  return {
+    title: post.title,
+    description: post.desc,
+  }
+}
+
+const BlogPost = async ({ params }) => {
+  console.log(params.id)
+  const data = await getData(params.id)
+
   return (
     <div className={styles.container}>
       <div className={styles.top}>
         <div className={styles.info}>
-          <h1 className={styles.title}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit
-          </h1>
-          <p className={styles.desc}>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus
-            perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat
-            tenetur?"
-          </p>
+          <h1 className={styles.title}>{data.title}</h1>
+          <p className={styles.desc}>{data.desc}</p>
           <div className={styles.author}>
             <Image
-              src="https://dimg.donga.com/wps/SPORTS/IMAGE/2022/07/25/114640187.1.jpg"
+              src={data.img}
               alt=""
               width={40}
               height={40}
               className={styles.avatar}
             />
-            <span className={styles.username}>John Doe</span>
+            <span className={styles.username}>{data.username}</span>
           </div>
         </div>
         <div className={styles.imgContainer}>
-          <Image
-            src="https://dimg.donga.com/wps/SPORTS/IMAGE/2022/07/25/114640187.1.jpg"
-            alt=""
-            fill={true}
-            className={styles.image}
-          />
+          <Image src={data.img} alt="" fill={true} className={styles.image} />
         </div>
       </div>
       <div className={styles.content}>
-        <p className={styles.text}>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur vel tenetur necessitatibus unde natus
-          perspiciatis, amet cupiditate ducimus possimus, eaque ex autem id nobis eum dolorem. Neque eveniet fugiat
-          tenetur?"
-        </p>
+        <p className={styles.text}>{data.content}</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default BlogPost

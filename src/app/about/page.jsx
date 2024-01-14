@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
-import Button from "@/components/button/Button";
+import Button from '@/components/Button/Button'
 
 const About = () => {
   return (
@@ -13,10 +13,12 @@ const About = () => {
           alt=""
           className={styles.img}
         />
-      <div className={styles.imgText}>
-        <h1 className={styles.imgTitle}>Digital Storytellers</h1>
-        <h2 className={styles.imgDesc}>Handcrafting award winning digital experiences</h2>
-      </div>
+        <div className={styles.imgText}>
+          <h1 className={styles.imgTitle}>Digital Storytellers</h1>
+          <h2 className={styles.imgDesc}>
+            Handcrafting award winning digital experiences
+          </h2>
+        </div>
       </div>
       <div className={styles.textContainer}>
         <div className={styles.item}>
@@ -44,14 +46,14 @@ const About = () => {
             suscipit eos. Animi quibusdam cum omnis officiis voluptatum quo ea
             eveniet? Lorem ipsum dolor sit amet consectetur adipisicing elit. -
             Creative Illustrations
-            <br/>
-            <br/> - Dynamic Websites
-            <br/>
-            <br/> - Fast and Handy
-            <br/>
-            <br/> - Mobile Apps
+            <br />
+            <br /> - Dynamic Websites
+            <br />
+            <br /> - Fast and Handy
+            <br />
+            <br /> - Mobile Apps
           </p>
-          <Button url="/contact" text="Contact"/>
+          <Button url="/contact" text="Contact" />
         </div>
       </div>
     </div>

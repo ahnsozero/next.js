@@ -1,56 +1,63 @@
-"use client"
+'use client'
 import React from 'react'
-import Link from "next/link";
-import styles from './navbar.module.css';
-import DarkModeToggle from "@/components/DarkModeToggle/DarkModeToggle";
+import Link from 'next/link'
+import styles from './navbar.module.css'
+import DarkModeToggle from '@/components/DarkModeToggle/DarkModeToggle'
 
 const links = [
   {
     id: 1,
-    title: "Home",
-    url: "/",
+    title: 'Home',
+    url: '/',
   },
   {
     id: 2,
-    title: "Portfolio",
-    url: "/portfolio",
+    title: 'Portfolio',
+    url: '/portfolio',
   },
   {
     id: 3,
-    title: "Blog",
-    url: "/blog",
+    title: 'Blog',
+    url: '/blog',
   },
   {
     id: 4,
-    title: "About",
-    url: "/about",
+    title: 'About',
+    url: '/about',
   },
   {
     id: 5,
-    title: "Contact",
-    url: "/contact",
+    title: 'Contact',
+    url: '/contact',
   },
   {
     id: 6,
-    title: "Dashboard",
-    url: "/dashboard",
+    title: 'Dashboard',
+    url: '/dashboard',
   },
-];
+]
 
 const Navbar = () => {
   return (
     <div className={styles.container}>
-      <Link href="/" className={styles.logo}>ahnsozero</Link>
+      <Link href="/" className={styles.logo}>
+        ahnsozero
+      </Link>
       <div className={styles.links}>
         <DarkModeToggle />
-        {links.map(link=> (
-          <Link key={link.id} href={link.url} className={styles.link}>{link.title}</Link>
+        {links.map((link) => (
+          <Link key={link.id} href={link.url} className={styles.link}>
+            {link.title}
+          </Link>
         ))}
         <button
           className={styles.logout}
           onClick={() => {
-          console.log("logged out")
-        }}>logout</button>
+            console.log('logged out')
+          }}
+        >
+          logout
+        </button>
       </div>
     </div>
   )
