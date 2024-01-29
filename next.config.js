@@ -6,6 +6,7 @@ const nextConfig = {
       'image.xportsnews.com',
       'dimg.donga.com',
       'cdn.gukjenews.com',
+      'img.mbn.co.kr'
     ],
   },
   // Add or modify other configuration options here
